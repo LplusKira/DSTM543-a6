@@ -103,11 +103,32 @@ Prediction time:         2.4469852447509766
 '''
 cm = np.array([
  [177,  94,  47, 305],
- [ 48, 320,  56, 196],
- [ 42,  79, 364, 135],
+ [48, 320,  56, 196],
+ [42,  79, 364, 135],
  [167, 140,  45, 272],
 ])
 
 print('task 3')
+indx2metrics = getIndx2Metrics(cm)
+printMetrics(indx2metrics)
+
+
+cm = np.array([
+    [166, 68, 186, 203],
+    [114, 242, 149, 115],
+    [168, 56, 211, 185],
+    [190, 78, 188, 168],
+])
+print('task 4')
+indx2metrics = getIndx2Metrics(cm)
+printMetrics(indx2metrics)
+
+cm = np.array([
+    [267, 68, 39, 249],
+    [170, 233, 57, 160],
+    [57, 18, 434, 111],
+    [237, 73,  68, 246],
+])
+print('task 5')
 indx2metrics = getIndx2Metrics(cm)
 printMetrics(indx2metrics)

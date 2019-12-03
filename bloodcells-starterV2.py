@@ -5,7 +5,7 @@ from sklearn.metrics import confusion_matrix
 import tensorflow as tf
 import time
 import keras
-from keras.layers import Input, Dropout, Conv2D, MaxPooling2D, Dense, Layer, Activation, Flatten, AveragePooling2D
+from keras.layers import Input, Dropout, Conv2D, MaxPooling2D, Dense, Layer, Activation, Flatten, AveragePooling2D, BatchNormalization
 from keras.models import Model, Sequential
 from keras.utils import to_categorical
 from keras.callbacks import TensorBoard, TerminateOnNaN, ModelCheckpoint, EarlyStopping
@@ -29,8 +29,8 @@ n_epochs      = 100
 batch_size    = 64
 nc            = 16  # number of hidden nodes
 lss           = 'categorical_crossentropy'
-#opt           = keras.optimizers.Adam()
-opt           = keras.optimizers.Adadelta()
+opt           = keras.optimizers.Adam()
+#opt           = keras.optimizers.Adadelta()
 dfactor       = 4 # downsample factor
 ###
 ### END CHANGE ME -----------------------------------------------------
@@ -112,7 +112,7 @@ def base_net():
     ###
     layer_in = Input(shape=(nx, ny, 3), name='img_goes_here')
     ### create your input layer here
-    ### downsample the data 
+    ### downsample the data
     layer = AveragePooling2D(pool_size=dfactor, padding='same')(layer_in)
     layer = Flatten()(layer)
     ###
@@ -142,9 +142,23 @@ def base_cnn():
     # ###
     model = Sequential()
     model.add(AveragePooling2D(pool_size=dfactor, padding='same', input_shape=(nx, ny, 3)))
-    model.add(Conv2D(filters=3, kernel_size=(3, 3), activation='relu', padding='same'))
+    model.add(Conv2D(filters=4, kernel_size=(3, 3), activation='relu', padding='same'))
     model.add(Flatten())
     model.add(Dense(4, activation="softmax"))
+
+    return model ### change this too
+
+def improved_cnn():
+    # ### your code here
+    # ###
+    model = Sequential()
+    model.add(AveragePooling2D(pool_size=dfactor, padding='same', input_shape=(nx, ny, 3)))
+    model.add(Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Flatten())
+    model.add(Dense(4, activation="softmax"))
+
 
     return model ### change this too
 
@@ -155,8 +169,9 @@ def base_cnn():
 ### For each model you create, add a key
 ### pair to the dictionary of the form below
 models = { \
-    #"base"           :  base_net  ,
-    "base_cnn"           :  base_cnn  ,
+    #"base"             :  base_net  ,
+    #"base_cnn"          :  base_cnn  ,
+    "improved_cnn"      :  improved_cnn  ,
 ### "model_example"  : get_model_example ,
     }
 ###
