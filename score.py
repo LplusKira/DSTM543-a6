@@ -41,6 +41,18 @@ def printMetrics(indx2metrics):
         print('f2', k, f2)
         print('')
 
+    # For excel paste : )
+    print('# For excel paste : )')
+    for k in indx2metrics:
+        o = indx2metrics[k]
+        correctPercent = getCorrectPercent(o)
+        recall = getRecall(o)
+        specificity = getSpecificity(o)
+        precision = getPrecision(o)
+        f1 = getF1(precision, recall)
+        f2 = getF2(precision, recall)
+        print('{},{},{},{},{},{}'.format(correctPercent, recall, specificity, precision, f1, f2))
+
 def getIndx2Metrics(cm):
     indx2metrics = {}
     for i, predicts in enumerate(cm):
@@ -53,18 +65,18 @@ def getIndx2Metrics(cm):
 '''
 Task 1
 Confusion matrix:
-[[623   0   0   0]
- [620   0   0   0]
- [620   0   0   0]
- [624   0   0   0]]
-Training time:           1341.3634989261627
-Prediction time:         2.340301513671875
+[[  0   0 623   0]
+ [  0   0 620   0]
+ [  0   0 620   0]
+ [  0   0 624   0]]
+Training time:           1413.9152915477753
+Prediction time:         1.7894158363342285
 '''
 cm = np.array([
-    [623,   0,   0,   0],
-    [620,   0,   0,   0],
-    [620,   0,   0,   0],
-    [624,   0,   0,   0],
+    [0,   0,  623,    0],
+    [0,   0,  620,    0],
+    [0,   0,  620,    0],
+    [0,   0,  624,    0],
 ])
 
 print('task 1')
@@ -73,18 +85,19 @@ printMetrics(indx2metrics)
 
 '''
 Task 2
-[[250  57  50 266]
- [ 93 277  71 179]
- [ 60  19 421 120]
- [206  47 107 264]]
-Training time:           1430.3466546535492
-Prediction time:         2.4221107959747314
+Confusion matrix:
+[[126 163  82 252]
+ [ 39 323  65 193]
+ [ 23  59 457  81]
+ [ 96 135 166 227]]
+Training time:           1427.547043800354
+Prediction time:         2.491168737411499
 '''
 cm = np.array([
-    [250,  57,  50, 266],
-    [ 93, 277,  71, 179],
-    [ 60,  19, 421, 120],
-    [206,  47, 107, 264],
+ [126, 163,  82, 252],
+ [ 39, 323,  65, 193],
+ [ 23,  59, 457,  81],
+ [ 96, 135, 166, 227],
 ])
 
 print('task 2')
@@ -94,18 +107,19 @@ printMetrics(indx2metrics)
 
 '''
 Task 3
-[[177  94  47 305]
- [ 48 320  56 196]
- [ 42  79 364 135]
- [167 140  45 272]]
-Training time:           1407.9878554344177
-Prediction time:         2.4469852447509766
+Confusion matrix:
+[[270  62  40 251]
+ [130 197  15 278]
+ [ 85   8 344 183]
+ [242  51  29 302]]
+Training time:           1597.7762842178345
+Prediction time:         2.661710500717163
 '''
 cm = np.array([
- [177,  94,  47, 305],
- [48, 320,  56, 196],
- [42,  79, 364, 135],
- [167, 140,  45, 272],
+ [270,  62,  40, 251],
+ [130, 197,  15, 278],
+ [ 85,   8, 344, 183],
+ [242,  51,  29, 302],
 ])
 
 print('task 3')

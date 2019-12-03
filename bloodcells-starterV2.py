@@ -107,24 +107,24 @@ met           = ['accuracy']
 ### Ref: https://www.programcreek.com/python/example/89711/keras.layers.AveragePooling2D
 ###
 def base_net():
-    ###
-    ### your code here
-    ###
-    layer_in = Input(shape=(nx, ny, 3), name='img_goes_here')
-    ### create your input layer here
-    ### downsample the data
-    layer = AveragePooling2D(pool_size=dfactor, padding='same')(layer_in)
-    layer = Flatten()(layer)
-    ###
-    layer = Dense(nc, input_dim=nx * ny * 3, init="uniform", activation="relu")(layer)
-    layer = Dense(len(cell_types), activation='softmax')(layer)
-    model = Model(input=layer_in, output=layer)
+    # ###
+    # ### your code here
+    # ###
+    # layer_in = Input(shape=(nx, ny, 3), name='img_goes_here')
+    # ### create your input layer here
+    # ### downsample the data
+    # layer = AveragePooling2D(pool_size=dfactor, padding='same')(layer_in)
+    # layer = Flatten()(layer)
+    # ###
+    # layer = Dense(nc, input_dim=nx * ny * 3, init="uniform", activation="relu")(layer)
+    # layer = Dense(len(cell_types), activation='softmax')(layer)
+    # model = Model(input=layer_in, output=layer)
 
-    # model = Sequential()
-    # model.add(AveragePooling2D(pool_size=dfactor, padding='same'))
-    # model.add(Flatten())
-    # model.add(Dense(nc, input_dim=nx * ny * 3, init="uniform", activation="relu"))
-    # model.add(Dense(4, activation="softmax"))
+    model = Sequential()
+    model.add(AveragePooling2D(pool_size=dfactor, padding='same', input_shape=(nx, ny, 3)))
+    model.add(Dense(nc, input_dim=nx * ny * 3, init="uniform", activation="relu"))
+    model.add(Flatten())
+    model.add(Dense(4, activation="softmax"))
     # ### your code here
     # ###
 
@@ -169,9 +169,10 @@ def improved_cnn():
 ### For each model you create, add a key
 ### pair to the dictionary of the form below
 models = { \
-    #"base"             :  base_net  ,
-    #"base_cnn"          :  base_cnn  ,
-    "improved_cnn"      :  improved_cnn  ,
+    "base_fnn"             :  base_net  ,
+    "base_cnn"          :  base_cnn  ,
+    "base_cnn_Adadelta"          :  base_cnn  ,
+    #"improved_cnn"      :  improved_cnn  ,
 ### "model_example"  : get_model_example ,
     }
 ###
@@ -192,6 +193,8 @@ models = { \
 for m in models:
 
     print("Model: ", m)
+    if m == "base_cnn_Adadelta":
+        opt=keras.optimizers.Adadelta()
     net = models[m]()
     net.compile(loss=lss, optimizer=opt, metrics=met)
 
