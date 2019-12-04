@@ -73,10 +73,10 @@ Training time:           1413.9152915477753
 Prediction time:         1.7894158363342285
 '''
 cm = np.array([
-    [0,   0,  623,    0],
-    [0,   0,  620,    0],
-    [0,   0,  620,    0],
-    [0,   0,  624,    0],
+    [0, 0, 623, 0],
+    [0, 0, 620, 0],
+    [0, 0, 620, 0],
+    [0, 0, 624, 0],
 ])
 
 print('task 1')
@@ -86,20 +86,20 @@ printMetrics(indx2metrics)
 '''
 Task 2
 Confusion matrix:
-[[126 163  82 252]
- [ 39 323  65 193]
- [ 23  59 457  81]
- [ 96 135 166 227]]
-Training time:           1427.547043800354
-Prediction time:         2.491168737411499
+ [[237 69 51 266]
+ [126 292 39 163]
+ [70 19 454 77]
+ [227 75 52 270]]
+Training time:           1611.98002409935
+Prediction time:         2.4913928508758545
 '''
-cm = np.array([
- [126, 163,  82, 252],
- [ 39, 323,  65, 193],
- [ 23,  59, 457,  81],
- [ 96, 135, 166, 227],
-])
 
+cm = np.array([
+    [237, 69, 51, 266],
+    [126, 292, 39, 163],
+    [70, 19, 454,  77],
+    [227, 75, 52, 270],
+])
 print('task 2')
 indx2metrics = getIndx2Metrics(cm)
 printMetrics(indx2metrics)
@@ -127,22 +127,22 @@ indx2metrics = getIndx2Metrics(cm)
 printMetrics(indx2metrics)
 
 
+'''
+Task 4
+Confusion matrix:
+[[336  12  31 244]
+ [ 27 524  45  24]
+ [  3   0 573  44]
+ [ 57  21  56 490]]
+Training time:           2230.9548387527466
+Prediction time:         2.569983959197998
+'''
 cm = np.array([
-    [166, 68, 186, 203],
-    [114, 242, 149, 115],
-    [168, 56, 211, 185],
-    [190, 78, 188, 168],
+    [336, 12, 31, 244],
+    [27, 524, 45, 24],
+    [3, 0, 573, 44],
+    [57, 21, 56, 490],
 ])
 print('task 4')
-indx2metrics = getIndx2Metrics(cm)
-printMetrics(indx2metrics)
-
-cm = np.array([
-    [267, 68, 39, 249],
-    [170, 233, 57, 160],
-    [57, 18, 434, 111],
-    [237, 73,  68, 246],
-])
-print('task 5')
 indx2metrics = getIndx2Metrics(cm)
 printMetrics(indx2metrics)

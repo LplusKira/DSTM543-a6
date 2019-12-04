@@ -142,7 +142,7 @@ def base_cnn():
     # ###
     model = Sequential()
     model.add(AveragePooling2D(pool_size=dfactor, padding='same', input_shape=(nx, ny, 3)))
-    model.add(Conv2D(filters=4, kernel_size=(3, 3), activation='relu', padding='same'))
+    model.add(Conv2D(filters=16, kernel_size=(3, 3), activation='relu', padding='same'))
     model.add(Flatten())
     model.add(Dense(4, activation="softmax"))
 
