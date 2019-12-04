@@ -1,3 +1,4 @@
+# members: pc38, bz30
 import numpy as np
 def getRecall(o):
     return o['tp'] / (o['tp'] + o['fn'])

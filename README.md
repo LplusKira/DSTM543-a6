@@ -1,5 +1,10 @@
 # A6
 
+# Members
+```
+# members: pc38, bz30
+```
+
 # How to get metrics
 ```
   # first modify score.py for specific task's confusion matrix (cm)
